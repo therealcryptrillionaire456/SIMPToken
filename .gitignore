@@ -1,0 +1,42 @@
+# Python
+__pycache__/
+*.py[cod]
+*.so
+*.egg-info/
+dist/
+build/
+*.egg
+.eggs/
+
+# Virtual environments
+venv/
+.env/
+.venv/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Secrets (NEVER commit)
+*.json
+!docs/token/token-metadata.json
+*.pem
+*.key
+*.cert
+.env*
+!.env.template
+
+# Token state (auto-generated)
+*.db
+*.sqlite
+*.sqlite3
+
+# Logs
+*.log

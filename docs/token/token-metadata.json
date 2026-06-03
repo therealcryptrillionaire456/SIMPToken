@@ -1,0 +1,31 @@
+{
+  "name": "SIMP Protocol",
+  "symbol": "SIMPT",
+  "description": "The native token powering the SIMP multi-agent mesh — Structured Intent Messaging Protocol. Fuel for autonomous AI agent communication, staking, and governance. SIMP is the economic layer for agentic AI coordination.",
+  "image": "https://simptoken.uk/logo.png",
+  "external_url": "https://simptoken.uk",
+  "attributes": [
+    { "trait_type": "Network", "value": "Solana" },
+    { "trait_type": "Standard", "value": "SPL Token (Metaplex)" },
+    { "trait_type": "Total Supply", "value": "1,000,000,000" },
+    { "trait_type": "Decimals", "value": "6" },
+    { "trait_type": "Mint Authority", "value": "Permanently Disabled" },
+    { "trait_type": "Freeze Authority", "value": "None" },
+    { "trait_type": "Category", "value": "Utility Token" }
+  ],
+  "properties": {
+    "files": [
+      {
+        "uri": "https://simptoken.uk/logo.png",
+        "type": "image/png"
+      }
+    ],
+    "category": "utility-token",
+    "creators": [
+      {
+        "address": "58EohzqesFaxpRaqgaab7v5f9ZAhBGhzubTNHEHHmPpB",
+        "share": 100
+      }
+    ]
+  }
+}

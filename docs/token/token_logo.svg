@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0A0A0A"/>
+      <stop offset="100%" stop-color="#1A0A2E"/>
+    </linearGradient>
+    <linearGradient id="violetGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#6B21A8"/>
+      <stop offset="100%" stop-color="#7C3AED"/>
+    </linearGradient>
+    <linearGradient id="emeraldGlow" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#059669"/>
+      <stop offset="100%" stop-color="#10B981"/>
+    </linearGradient>
+    <radialGradient id="centerGlow" cx="50%" cy="50%" r="45%">
+      <stop offset="0%" stop-color="#7C3AED" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#7C3AED" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="softGlow">
+      <feGaussianBlur stdDeviation="24" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1024" height="1024" fill="url(#bgGrad)" rx="128"/>
+
+  <!-- Outer ring glow -->
+  <circle cx="512" cy="512" r="380" fill="none" stroke="url(#violetGlow)" stroke-width="3" opacity="0.15" filter="url(#softGlow)"/>
+
+  <!-- Hexagon outer -->
+  <polygon points="512,140 832,326 832,698 512,884 192,698 192,326"
+           fill="none" stroke="url(#violetGlow)" stroke-width="8"
+           stroke-linejoin="round" opacity="0.3"/>
+
+  <!-- Hexagon inner -->
+  <polygon points="512,230 760,380 760,644 512,794 264,644 264,380"
+           fill="none" stroke="url(#violetGlow)" stroke-width="6"
+           stroke-linejoin="round" opacity="0.15"/>
+
+  <!-- Center glow -->
+  <circle cx="512" cy="512" r="180" fill="url(#centerGlow)"/>
+
+  <!-- Central bolt/hub -->
+  <g filter="url(#glow)">
+    <!-- Outer diamond -->
+    <polygon points="512,300 680,512 512,724 344,512"
+             fill="url(#violetGlow)" opacity="0.25"/>
+    <!-- Inner diamond -->
+    <polygon points="512,350 638,512 512,674 386,512"
+             fill="none" stroke="url(#violetGlow)" stroke-width="4" stroke-linejoin="round"/>
+  </g>
+
+  <!-- Nodes on hexagon vertices (agents) -->
+  <g filter="url(#glow)">
+    <!-- Top -->
+    <circle cx="512" cy="230" r="18" fill="url(#emeraldGlow)" opacity="0.9"/>
+    <text x="512" y="210" text-anchor="middle" fill="#10B981" font-family="monospace" font-size="22" font-weight="bold" opacity="0.7">K</text>
+    <!-- Top-right -->
+    <circle cx="760" cy="380" r="18" fill="url(#emeraldGlow)" opacity="0.9"/>
+    <text x="760" y="360" text-anchor="middle" fill="#10B981" font-family="monospace" font-size="22" font-weight="bold" opacity="0.7">B</text>
+    <!-- Bottom-right -->
+    <circle cx="760" cy="644" r="18" fill="url(#emeraldGlow)" opacity="0.9"/>
+    <text x="760" y="624" text-anchor="middle" fill="#10B981" font-family="monospace" font-size="22" font-weight="bold" opacity="0.7">P</text>
+    <!-- Bottom -->
+    <circle cx="512" cy="794" r="18" fill="url(#emeraldGlow)" opacity="0.9"/>
+    <text x="512" y="774" text-anchor="middle" fill="#10B981" font-family="monospace" font-size="22" font-weight="bold" opacity="0.7">G</text>
+    <!-- Bottom-left -->
+    <circle cx="264" cy="644" r="18" fill="url(#emeraldGlow)" opacity="0.9"/>
+    <text x="264" y="624" text-anchor="middle" fill="#10B981" font-family="monospace" font-size="22" font-weight="bold" opacity="0.7">C</text>
+    <!-- Top-left -->
+    <circle cx="264" cy="380" r="18" fill="url(#emeraldGlow)" opacity="0.9"/>
+    <text x="264" y="360" text-anchor="middle" fill="#10B981" font-family="monospace" font-size="22" font-weight="bold" opacity="0.7">Q</text>
+  </g>
+
+  <!-- Connection lines (agent mesh) -->
+  <g stroke="#10B981" stroke-width="2" opacity="0.12" stroke-dasharray="6,6">
+    <line x1="512" y1="230" x2="760" y2="380"/>
+    <line x1="760" y1="380" x2="760" y2="644"/>
+    <line x1="760" y1="644" x2="512" y2="794"/>
+    <line x1="512" y1="794" x2="264" y2="644"/>
+    <line x1="264" y1="644" x2="264" y2="380"/>
+    <line x1="264" y1="380" x2="512" y2="230"/>
+    <!-- Cross connections -->
+    <line x1="512" y1="230" x2="512" y2="794"/>
+    <line x1="264" y1="380" x2="760" y2="644"/>
+    <line x1="760" y1="380" x2="264" y2="644"/>
+  </g>
+
+  <!-- SIMP text -->
+  <text x="512" y="900" text-anchor="middle" fill="#7C3AED" font-family="'JetBrains Mono', monospace" font-size="48" font-weight="800" letter-spacing="12" opacity="0.9">SIMP</text>
+</svg>

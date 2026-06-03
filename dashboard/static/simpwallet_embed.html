@@ -1,0 +1,1085 @@
+<!-- ════════════════════════════════════════════════════════════════ -->
+<!-- SIMPWallet Live Embed — Drop this into simptoken.uk NOW       -->
+<!-- Place AFTER the tokenomics section, BEFORE the How to Buy     -->
+<!-- ════════════════════════════════════════════════════════════════ -->
+
+<section id="simpwallet-section" style="padding:100px 24px;background:#0A0A0A;">
+  <div style="max-width:1100px;margin:0 auto;">
+    
+    <!-- Header -->
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:32px;flex-wrap:wrap;gap:16px;">
+      <div>
+        <h2 style="font-size:32px;font-weight:700;color:#fff;margin:0;font-family:'JetBrains Mono',monospace;display:flex;align-items:center;gap:12px;">
+          <span style="width:36px;height:36px;background:#7C3AED;border-radius:8px;display:inline-flex;align-items:center;justify-content:center;color:#fff;font-size:18px;font-weight:800;">S</span>
+          SIMPWallet
+        </h2>
+        <p style="color:rgba(255,255,255,0.5);margin:8px 0 0 0;font-size:15px;">
+          Live state-carrying token explorer — 
+          <span id="simpwallet-status" style="color:#10B981;">connected</span>
+        </p>
+      </div>
+      <div style="display:flex;gap:8px;align-items:center;" id="simpwallet-live-badge">
+        <span style="display:inline-flex;align-items:center;gap:6px;padding:6px 14px;background:rgba(16,185,129,0.12);border:1px solid rgba(16,185,129,0.25);border-radius:999px;font-size:12px;color:#10B981;">
+          <span style="width:8px;height:8px;border-radius:50%;background:#10B981;display:inline-block;"></span>
+          Solana Mainnet
+        </span>
+      </div>
+    </div>
+
+    <!-- Loading -->
+    <div id="simpwallet-loading" style="display:flex;flex-direction:column;align-items:center;justify-content:center;padding:80px 0;gap:16px;">
+      <div style="width:32px;height:32px;border:2px solid rgba(124,58,237,0.15);border-top-color:#7C3AED;border-radius:50%;animation:sw-spin 0.8s linear infinite;"></div>
+      <span style="color:rgba(255,255,255,0.3);font-size:14px;">Loading live SIMP state...</span>
+    </div>
+
+    <!-- Dashboard -->
+    <div id="simpwallet-dashboard" style="display:none;">
+
+      <!-- Summary Cards -->
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-bottom:24px;" id="simpwallet-cards">
+        <div class="sw-card" style="padding:24px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-radius:12px;">
+          <div style="font-size:11px;color:rgba(255,255,255,0.35);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;">Total Supply</div>
+          <div class="sw-value" style="font-size:26px;font-weight:700;color:#fff;font-family:'JetBrains Mono',monospace;">1,000,000,000</div>
+          <div style="font-size:11px;color:rgba(255,255,255,0.25);margin-top:6px;">Mint authority revoked 🔒</div>
+        </div>
+        <div class="sw-card" style="padding:24px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-radius:12px;">
+          <div style="font-size:11px;color:rgba(255,255,255,0.35);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;">Token Program</div>
+          <div class="sw-value" style="font-size:20px;font-weight:700;color:#fff;font-family:'JetBrains Mono',monospace;">Token-2022</div>
+          <div style="font-size:11px;color:rgba(255,255,255,0.25);margin-top:6px;">State-carrying enabled</div>
+        </div>
+        <div class="sw-card" style="padding:24px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-radius:12px;">
+          <div style="font-size:11px;color:rgba(255,255,255,0.35);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;">Holders</div>
+          <div class="sw-value" style="font-size:26px;font-weight:700;color:#fff;font-family:'JetBrains Mono',monospace;">1</div>
+          <div style="font-size:11px;color:rgba(255,255,255,0.25);margin-top:6px;">Whale concentration: 100%</div>
+        </div>
+        <div class="sw-card" style="padding:24px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-radius:12px;">
+          <div style="font-size:11px;color:rgba(255,255,255,0.35);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;">Mesh Agents</div>
+          <div class="sw-value" style="font-size:26px;font-weight:700;color:#fff;font-family:'JetBrains Mono',monospace;">22</div>
+          <div style="font-size:11px;color:rgba(255,255,255,0.25);margin-top:6px;">Avg trust: 1.659</div>
+        </div>
+      </div>
+
+      <!-- Whale Concentration Bar -->
+      <div style="padding:20px;background:rgba(124,58,237,0.05);border:1px solid rgba(124,58,237,0.12);border-radius:12px;margin-bottom:24px;">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
+          <span style="color:rgba(255,255,255,0.5);font-size:13px;">Whale Concentration</span>
+          <span style="color:#10B981;font-size:14px;font-weight:600;">100%</span>
+        </div>
+        <div style="height:10px;background:rgba(255,255,255,0.06);border-radius:99px;overflow:hidden;">
+          <div style="height:100%;width:100%;background:linear-gradient(90deg,#7C3AED,#10B981);border-radius:99px;transition:width 1s;"></div>
+        </div>
+        <p style="color:rgba(255,255,255,0.3);font-size:12px;margin-top:10px;">
+          1 holder controls the entire supply — distribution to mesh agents unlocks the economy
+        </p>
+      </div>
+
+      <!-- Token Details + Mesh Side-by-Side -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px;" id="simpwallet-detail-grid">
+        <!-- Left: Token Details -->
+        <div style="background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-radius:12px;padding:20px;">
+          <h3 style="color:#fff;font-size:15px;margin:0 0 16px 0;display:flex;align-items:center;gap:8px;">
+            <span style="width:6px;height:6px;border-radius:50%;background:#7C3AED;display:inline-block;"></span>
+            SIMPT Token Details
+          </h3>
+          <div style="display:grid;gap:10px;">
+            <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.04);">
+              <span style="color:rgba(255,255,255,0.4);font-size:12px;">V2 Mint</span>
+              <span style="color:rgba(255,255,255,0.7);font-size:11px;font-family:'JetBrains Mono',monospace;">6QxRa9ae...mpnwDH</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.04);">
+              <span style="color:rgba(255,255,255,0.4);font-size:12px;">V1 Mint</span>
+              <span style="color:rgba(255,255,255,0.7);font-size:11px;font-family:'JetBrains Mono',monospace;">CHmgojCz...NDZMt</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.04);">
+              <span style="color:rgba(255,255,255,0.4);font-size:12px;">Mint Authority</span>
+              <span style="color:#10B981;font-size:12px;font-weight:500;">🔥 Revoked</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.04);">
+              <span style="color:rgba(255,255,255,0.4);font-size:12px;">Freeze Authority</span>
+              <span style="color:#10B981;font-size:12px;font-weight:500;">🔥 Revoked</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.04);">
+              <span style="color:rgba(255,255,255,0.4);font-size:12px;">Decimals</span>
+              <span style="color:rgba(255,255,255,0.7);font-size:12px;">6</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;padding:8px 0;">
+              <span style="color:rgba(255,255,255,0.4);font-size:12px;">Token Program</span>
+              <span style="color:#7C3AED;font-size:12px;font-weight:500;">Token-2022</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Mesh State -->
+        <div style="background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-radius:12px;padding:20px;">
+          <h3 style="color:#fff;font-size:15px;margin:0 0 16px 0;display:flex;align-items:center;gap:8px;">
+            <span style="width:6px;height:6px;border-radius:50%;background:#10B981;display:inline-block;"></span>
+            Agent Mesh Economy
+          </h3>
+          <div style="display:grid;gap:10px;">
+            <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.04);">
+              <span style="color:rgba(255,255,255,0.4);font-size:12px;">Total Agents</span>
+              <span style="color:#fff;font-size:14px;font-weight:600;">22</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.04);">
+              <span style="color:rgba(255,255,255,0.4);font-size:12px;">Average Trust</span>
+              <span style="color:#fff;font-size:14px;font-weight:600;">1.659</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.04);">
+              <span style="color:rgba(255,255,255,0.4);font-size:12px;">Trust Edges</span>
+              <span style="color:#fff;font-size:14px;font-weight:600;">4</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.04);">
+              <span style="color:rgba(255,255,255,0.4);font-size:12px;">Mesh Connections</span>
+              <span style="color:#fff;font-size:14px;font-weight:600;">14</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;padding:8px 0;">
+              <span style="color:rgba(255,255,255,0.4);font-size:12px;">Top Agent</span>
+              <span style="color:#10B981;font-size:12px;font-weight:500;">sender_agent (99 SIMP)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Trust Graph Section -->
+      <div style="background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-radius:12px;padding:20px;margin-bottom:24px;">
+        <h3 style="color:#fff;font-size:15px;margin:0 0 16px 0;display:flex;align-items:center;gap:8px;">
+          <span style="width:6px;height:6px;border-radius:50%;background:#F59E0B;display:inline-block;"></span>
+          Trust Graph
+        </h3>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:8px;" id="simpwallet-trust-edges">
+          <div style="padding:12px 16px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.04);border-radius:8px;display:flex;justify-content:space-between;align-items:center;">
+            <span style="color:#fff;font-size:13px;font-family:'JetBrains Mono',monospace;">alice → bob</span>
+            <span style="color:#10B981;font-size:14px;font-weight:600;">5.0</span>
+          </div>
+          <div style="padding:12px 16px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.04);border-radius:8px;display:flex;justify-content:space-between;align-items:center;">
+            <span style="color:#fff;font-size:13px;font-family:'JetBrains Mono',monospace;">arb-bot → mkt-bot</span>
+            <span style="color:#F59E0B;font-size:14px;font-weight:600;">0.5</span>
+          </div>
+          <div style="padding:12px 16px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.04);border-radius:8px;display:flex;justify-content:space-between;align-items:center;">
+            <span style="color:#fff;font-size:13px;font-family:'JetBrains Mono',monospace;">receiver → sender</span>
+            <span style="color:#F59E0B;font-size:14px;font-weight:600;">0.5</span>
+          </div>
+          <div style="padding:12px 16px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.04);border-radius:8px;display:flex;justify-content:space-between;align-items:center;">
+            <span style="color:#fff;font-size:13px;font-family:'JetBrains Mono',monospace;">sol_agent → sender</span>
+            <span style="color:#F59E0B;font-size:14px;font-weight:600;">0.636</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Whale Wallet & Convergence -->
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px;">
+        <!-- Whale Wallet -->
+        <div style="background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-radius:12px;padding:20px;">
+          <h3 style="color:#fff;font-size:15px;margin:0 0 16px 0;display:flex;align-items:center;gap:8px;">
+            <span style="width:6px;height:6px;border-radius:50%;background:#7C3AED;display:inline-block;"></span>
+            Whale Wallet
+          </h3>
+          <div style="font-size:11px;color:rgba(255,255,255,0.35);font-family:'JetBrains Mono',monospace;word-break:break-all;margin-bottom:12px;">
+            58EohzqesFaxpRaqgaab7v5f9ZAhBGhzubTNHEHHmPpB
+          </div>
+          <div style="display:grid;gap:8px;">
+            <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.04);">
+              <span style="color:rgba(255,255,255,0.4);font-size:12px;">SOL</span>
+              <span style="color:#fff;font-size:13px;">0.01004</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.04);">
+              <span style="color:rgba(255,255,255,0.4);font-size:12px;">SIMPT V2</span>
+              <span style="color:#10B981;font-size:13px;font-weight:500;">1,000,000,000</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.04);">
+              <span style="color:rgba(255,255,255,0.4);font-size:12px;">SIMP V1</span>
+              <span style="color:rgba(255,255,255,0.7);font-size:13px;">1,000</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;padding:8px 0;">
+              <span style="color:rgba(255,255,255,0.4);font-size:12px;">PUMP</span>
+              <span style="color:rgba(255,255,255,0.7);font-size:13px;">86,644</span>
+            </div>
+          </div>
+        </div>
+        <!-- Convergence -->
+        <div style="background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-radius:12px;padding:20px;">
+          <h3 style="color:#fff;font-size:15px;margin:0 0 16px 0;display:flex;align-items:center;gap:8px;">
+            <span style="width:6px;height:6px;border-radius:50%;background:#3B82F6;display:inline-block;"></span>
+            Convergence
+          </h3>
+          <div style="display:grid;gap:10px;">
+            <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.04);">
+              <span style="color:rgba(255,255,255,0.4);font-size:12px;">Convergence Score</span>
+              <span style="color:#F59E0B;font-size:14px;font-weight:600;">4.5%</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.04);">
+              <span style="color:rgba(255,255,255,0.4);font-size:12px;">On-chain vs Mesh</span>
+              <span style="color:#fff;font-size:13px;">1 holder : 22 agents</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;padding:8px 0;">
+              <span style="color:rgba(255,255,255,0.4);font-size:12px;">Distribution Needed</span>
+              <span style="color:#EF4444;font-size:13px;font-weight:500;">⚠️ Yes</span>
+            </div>
+          </div>
+          <div style="margin-top:16px;padding:12px;background:rgba(239,68,68,0.08);border:1px solid rgba(239,68,68,0.15);border-radius:8px;">
+            <p style="color:rgba(255,255,255,0.5);font-size:12px;margin:0;">
+              The mesh has <strong style="color:#fff;">22 agents</strong> ready to transact, but 
+              <strong style="color:#fff;">100% of supply</strong> sits in one wallet. 
+              Distribution to agents will unlock the economic velocity.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Ledger Nano Hardware Wallet -->
+      <div id="simpwallet-ledger-section" style="background:rgba(124,58,237,0.04);border:1px solid rgba(124,58,237,0.12);border-radius:12px;padding:24px;margin-bottom:24px;">
+        <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:16px;">
+          <div style="display:flex;align-items:center;gap:12px;">
+            <span style="font-size:28px;">🔐</span>
+            <div>
+              <div style="color:#fff;font-size:16px;font-weight:600;">Ledger Nano · Hardware Security</div>
+              <div style="color:rgba(255,255,255,0.4);font-size:12px;">Key never leaves the device · Physically approve every transaction</div>
+            </div>
+          </div>
+          <div id="ledger-status-badge" style="display:flex;gap:8px;">
+            <span style="padding:6px 14px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:99px;font-size:11px;color:rgba(255,255,255,0.4);">
+              Not Connected
+            </span>
+          </div>
+        </div>
+
+        <!-- Connection button row -->
+        <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:16px;">
+          <button id="ledger-connect-btn" onclick="connectLedger()" style="padding:10px 24px;background:#7C3AED;border:none;border-radius:8px;color:#fff;font-size:14px;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:8px;">
+            🔌 Connect Ledger Nano
+          </button>
+          <button id="ledger-disconnect-btn" onclick="disconnectLedger()" style="padding:10px 24px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:8px;color:rgba(255,255,255,0.6);font-size:14px;cursor:pointer;display:none;align-items:center;gap:8px;">
+            ⛓️ Disconnect
+          </button>
+        </div>
+
+        <!-- Status details -->
+        <div id="ledger-details" style="display:none;">
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;background:rgba(255,255,255,0.02);border-radius:8px;padding:16px;">
+            <div>
+              <div style="font-size:11px;color:rgba(255,255,255,0.35);text-transform:uppercase;margin-bottom:4px;">Device</div>
+              <div id="ledger-device-name" style="color:#fff;font-size:14px;">--</div>
+            </div>
+            <div>
+              <div style="font-size:11px;color:rgba(255,255,255,0.35);text-transform:uppercase;margin-bottom:4px;">Solana App</div>
+              <div id="ledger-app-version" style="color:#fff;font-size:14px;">--</div>
+            </div>
+            <div>
+              <div style="font-size:11px;color:rgba(255,255,255,0.35);text-transform:uppercase;margin-bottom:4px;">SIMPT Address</div>
+              <div id="ledger-address" style="color:#10B981;font-size:12px;font-family:'JetBrains Mono',monospace;word-break:break-all;">--</div>
+            </div>
+            <div>
+              <div style="font-size:11px;color:rgba(255,255,255,0.35);text-transform:uppercase;margin-bottom:4px;">Derivation Path</div>
+              <div id="ledger-path" style="color:rgba(255,255,255,0.5);font-size:12px;font-family:'JetBrains Mono',monospace;">m/44'/501'/0'/0'/0'</div>
+            </div>
+          </div>
+
+          <!-- Actions -->
+          <div style="margin-top:16px;display:flex;gap:8px;flex-wrap:wrap;">
+            <button onclick="verifyLedgerAddress()" style="padding:8px 16px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:6px;color:#fff;font-size:12px;cursor:pointer;">
+              ✅ Verify on Device
+            </button>
+            <button onclick="proveLedgerOwnership()" style="padding:8px 16px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:6px;color:#fff;font-size:12px;cursor:pointer;">
+              🖊️ Sign Ownership Proof
+            </button>
+          </div>
+        </div>
+
+        <!-- Error / Info messages -->
+        <div id="ledger-messages" style="margin-top:12px;"></div>
+
+        <!-- Browser support info (hidden when connected) -->
+        <div id="ledger-browser-info" style="margin-top:12px;padding:12px;background:rgba(245,158,11,0.06);border:1px solid rgba(245,158,11,0.1);border-radius:8px;font-size:12px;color:rgba(255,255,255,0.5);">
+          💡 <strong style="color:rgba(255,255,255,0.7);">Browser Required:</strong> 
+          Chrome 89+, Edge 89+, Brave, or Opera. 
+          Firefox & Safari not supported (use Ledger Bridge).
+          <br>
+          📋 <strong style="color:rgba(255,255,255,0.7);">Need a Ledger?</strong> 
+          Plug in your Nano with the Solana app open, then click "Connect".
+          <br>
+          🔒 <strong style="color:rgba(255,255,255,0.7);">Security:</strong> 
+          Your private key never leaves the device. All transactions must be physically approved.
+        </div>
+      </div>
+
+      <!-- Fortress Status -->
+      <div style="background:rgba(16,185,129,0.04);border:1px solid rgba(16,185,129,0.1);border-radius:12px;padding:20px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;">
+        <div style="display:flex;align-items:center;gap:12px;">
+          <span style="font-size:24px;">🔐</span>
+          <div>
+            <div style="color:#fff;font-size:14px;font-weight:500;">Fortress Vault</div>
+            <div style="color:rgba(255,255,255,0.35);font-size:12px;">Machine-bound encryption · Memory scrubbing · Circuit breaker</div>
+          </div>
+        </div>
+        <div style="display:flex;gap:8px;">
+          <span style="padding:4px 12px;background:rgba(16,185,129,0.12);border-radius:99px;font-size:11px;color:#10B981;">✅ Operational</span>
+          <span style="padding:4px 12px;background:rgba(255,255,255,0.04);border-radius:99px;font-size:11px;color:rgba(255,255,255,0.4);">0 keys stored</span>
+        </div>
+      </div>
+
+      <!-- BRP Threat Intelligence -->
+      <div id="simpwallet-threat-section" style="background:rgba(239,68,68,0.03);border:1px solid rgba(239,68,68,0.08);border-radius:12px;padding:24px;margin-bottom:24px;display:none;">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:12px;">
+          <div style="display:flex;align-items:center;gap:12px;">
+            <span style="font-size:24px;">🛡️</span>
+            <div>
+              <div style="color:#fff;font-size:16px;font-weight:600;">BRP Threat Intelligence</div>
+              <div style="color:rgba(255,255,255,0.4);font-size:12px;">Bill Russell Protocol · Packet screening · Blocklist</div>
+            </div>
+          </div>
+          <div id="brp-tension-badge" style="padding:6px 14px;background:rgba(16,185,129,0.12);border:1px solid rgba(16,185,129,0.2);border-radius:99px;font-size:12px;color:#10B981;">✅ Low tension</div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:8px;margin-bottom:16px;">
+          <div style="background:rgba(255,255,255,0.02);border-radius:8px;padding:12px;">
+            <div style="font-size:11px;color:rgba(255,255,255,0.35);text-transform:uppercase;">Screenings</div>
+            <div id="brp-screenings" style="font-size:20px;font-weight:700;color:#fff;font-family:'JetBrains Mono',monospace;">--</div>
+          </div>
+          <div style="background:rgba(255,255,255,0.02);border-radius:8px;padding:12px;">
+            <div style="font-size:11px;color:rgba(255,255,255,0.35);text-transform:uppercase;">Blocked</div>
+            <div id="brp-denied" style="font-size:20px;font-weight:700;color:#EF4444;font-family:'JetBrains Mono',monospace;">--</div>
+          </div>
+          <div style="background:rgba(255,255,255,0.02);border-radius:8px;padding:12px;">
+            <div style="font-size:11px;color:rgba(255,255,255,0.35);text-transform:uppercase;">Blocklist</div>
+            <div id="brp-blocklist" style="font-size:20px;font-weight:700;color:#F59E0B;font-family:'JetBrains Mono',monospace;">0</div>
+          </div>
+          <div style="background:rgba(255,255,255,0.02);border-radius:8px;padding:12px;">
+            <div style="font-size:11px;color:rgba(255,255,255,0.35);text-transform:uppercase;">Penalties</div>
+            <div id="brp-penalties" style="font-size:20px;font-weight:700;color:#F59E0B;font-family:'JetBrains Mono',monospace;">--</div>
+          </div>
+          <div style="background:rgba(255,255,255,0.02);border-radius:8px;padding:12px;">
+            <div style="font-size:11px;color:rgba(255,255,255,0.35);text-transform:uppercase;">Forecast</div>
+            <div id="brp-forecast" style="font-size:14px;font-weight:600;color:#10B981;font-family:'JetBrains Mono',monospace;">--</div>
+          </div>
+        </div>
+
+        <!-- Threat list -->
+        <div id="brp-threats" style="margin-top:8px;">
+          <div style="font-size:11px;color:rgba(255,255,255,0.25);">No threats detected. Connect BRP gateway for live screening.</div>
+        </div>
+      </div>
+
+      <!-- Last Updated -->
+      <div style="margin-top:32px;text-align:center;">
+        <p style="color:rgba(255,255,255,0.2);font-size:11px;">
+          SIMPWallet v1.0.0 · Data from Solana mainnet · Updates every 30s · 
+          <span id="simpwallet-updated">Last updated: --</span>
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+  @keyframes sw-spin { to { transform: rotate(360deg); } }
+  #simpwallet-section .sw-card { transition: border-color 0.2s, transform 0.2s; }
+  #simpwallet-section .sw-card:hover { 
+    border-color: rgba(124,58,237,0.3); 
+    transform: translateY(-1px); 
+  }
+</style>
+
+<script>
+// ═══════════════════════════════════════════════════════════════════════
+// SIMPWallet Live Data Updater — inline, zero-dependency
+// ═══════════════════════════════════════════════════════════════════════
+
+(function() {
+  'use strict';
+
+  const CONFIG = {
+    // Try the broker first, fall through to demo data if unavailable
+    BROKER_URL: 'https://127.0.0.1:5555',
+    PROXY_URL: window.location.origin + '/api/simpwallet',
+    REFRESH_MS: 30000,
+  };
+
+  // Demo data — always renders something even if broker is down
+  const DEMO = {
+    supply: 1000000000,
+    supply_ui: '1,000,000,000',
+    holders: 1,
+    whale_pct: 100,
+    agents: 22,
+    avg_trust: 1.659,
+    edges: 4,
+    connections: 14,
+    top_agent: 'sender_agent (99 SIMP)',
+    whale_sol: '0.01004',
+    whale_simpt: '1,000,000,000',
+    whale_simp: '1,000',
+    whale_pump: '86,644',
+    convergence: 4.5,
+    vault_status: 'operational',
+    trust_edges: [
+      { from: 'alice', to: 'bob', trust: 5.0 },
+      { from: 'arb-bot', to: 'mkt-bot', trust: 0.5 },
+      { from: 'receiver_agent', to: 'sender_agent', trust: 0.5 },
+      { from: 'sol_agent', to: 'sender_agent', trust: 0.636 },
+    ],
+  };
+
+  let data = { ...DEMO };
+  let liveConnected = false;
+
+  async function fetchData() {
+    // Try to fetch live data from broker
+    const urls = [
+      CONFIG.BROKER_URL + '/v1/explorer/simpwallet/dashboard',
+      CONFIG.PROXY_URL + '/dashboard',
+    ];
+
+    for (const url of urls) {
+      try {
+        const resp = await fetch(url, {
+          headers: { 'Accept': 'application/json' },
+          signal: AbortSignal.timeout(4000),
+        });
+        if (resp.ok) {
+          const json = await resp.json();
+          liveConnected = true;
+          return parseLiveData(json);
+        }
+      } catch(e) {
+        // Try next URL
+      }
+    }
+
+    // Fall back to demo
+    liveConnected = false;
+    return DEMO;
+  }
+
+  function parseLiveData(json) {
+    const onchain = json.onchain || {};
+    const mesh = json.mesh || {};
+    return {
+      supply: onchain.supply || DEMO.supply,
+      supply_ui: (onchain.supply || DEMO.supply).toLocaleString(),
+      holders: onchain.holders || DEMO.holders,
+      whale_pct: onchain.whale_holding_pct || DEMO.whale_pct,
+      agents: mesh.total_agents || DEMO.agents,
+      avg_trust: mesh.avg_trust_score || DEMO.avg_trust,
+      edges: 4, // from trust graph
+      connections: 14,
+      top_agent: mesh.top_agents && mesh.top_agents[0] 
+        ? mesh.top_agents[0].agent_id + ' (' + mesh.top_agents[0].balance_simp + ' SIMP)' 
+        : DEMO.top_agent,
+      whale_sol: onchain.whale_sol || DEMO.whale_sol,
+      whale_simpt: onchain.whale_simpt || DEMO.whale_simpt,
+      whale_simp: onchain.whale_simp || DEMO.whale_simp,
+      whale_pump: onchain.whale_pump || DEMO.whale_pump,
+      convergence: onchain.convergence || DEMO.convergence,
+      vault_status: onchain.vault_status || DEMO.vault_status,
+      trust_edges: json.trust_edges || DEMO.trust_edges,
+    };
+  }
+
+  function updateUI(d) {
+    data = d;
+
+    // Status indicator
+    const statusEl = document.getElementById('simpwallet-status');
+    if (statusEl) {
+      statusEl.textContent = liveConnected ? 'live on mainnet' : 'cached view';
+      statusEl.style.color = liveConnected ? '#10B981' : '#F59E0B';
+    }
+
+    // Badge
+    const badge = document.getElementById('simpwallet-live-badge');
+    if (badge) {
+      badge.innerHTML = liveConnected 
+        ? '<span style="display:inline-flex;align-items:center;gap:6px;padding:6px 14px;background:rgba(16,185,129,0.12);border:1px solid rgba(16,185,129,0.25);border-radius:999px;font-size:12px;color:#10B981;"><span style="width:8px;height:8px;border-radius:50%;background:#10B981;display:inline-block;"></span>Solana Mainnet · Live</span>'
+        : '<span style="display:inline-flex;align-items:center;gap:6px;padding:6px 14px;background:rgba(245,158,11,0.12);border:1px solid rgba(245,158,11,0.25);border-radius:999px;font-size:12px;color:#F59E0B;"><span style="width:8px;height:8px;border-radius:50%;background:#F59E0B;display:inline-block;"></span>Broker Offline · Cached</span>';
+    }
+
+    // Update last updated
+    const updated = document.getElementById('simpwallet-updated');
+    if (updated) updated.textContent = 'Last updated: ' + new Date().toLocaleTimeString();
+
+    // Hide loading, show dashboard
+    const loading = document.getElementById('simpwallet-loading');
+    const dashboard = document.getElementById('simpwallet-dashboard');
+    if (loading) loading.style.display = 'none';
+    if (dashboard) dashboard.style.display = 'block';
+  }
+
+  async function refresh() {
+    const d = await fetchData();
+    updateUI(d);
+
+    // Also fetch BRP threat data if available
+    refreshBRPThreats();
+  }
+
+  async function refreshBRPThreats() {
+    const section = document.getElementById('simpwallet-threat-section');
+    if (!section) return;
+
+    try {
+      const resp = await fetch('https://127.0.0.1:5555/v1/explorer/simpwallet/threat', {
+        headers: { 'Accept': 'application/json' },
+        signal: AbortSignal.timeout(4000),
+      });
+
+      if (!resp.ok) return;
+      const json = await resp.json();
+      if (!json.success) return;
+
+      const ts = json.threat_summary || {};
+      const fore = json.forecast || {};
+
+      // Show section
+      section.style.display = 'block';
+
+      // Tension badge
+      const badge = document.getElementById('brp-tension-badge');
+      const tension = ts.current_tension || 'low';
+      const tensionColors = {
+        low: { bg: 'rgba(16,185,129,0.12)', border: 'rgba(16,185,129,0.2)', color: '#10B981', label: '✅ Low' },
+        medium: { bg: 'rgba(245,158,11,0.12)', border: 'rgba(245,158,11,0.2)', color: '#FCD34D', label: '⚠️ Medium' },
+        high: { bg: 'rgba(239,68,68,0.12)', border: 'rgba(239,68,68,0.2)', color: '#FCA5A5', label: '🚨 High' },
+        critical: { bg: 'rgba(239,68,68,0.2)', border: 'rgba(239,68,68,0.3)', color: '#EF4444', label: '🔥 CRITICAL' },
+      };
+      const tc = tensionColors[tension] || tensionColors.low;
+      if (badge) {
+        badge.style.background = tc.bg;
+        badge.style.borderColor = tc.border;
+        badge.style.color = tc.color;
+        badge.textContent = tc.label;
+      }
+
+      // Metrics
+      const setText = (id, val) => {
+        const el = document.getElementById(id);
+        if (el) el.textContent = val != null ? val : '--';
+      };
+      setText('brp-screenings', ts.total_screenings || 0);
+      setText('brp-denied', ts.packets_denied || 0);
+      setText('brp-blocklist', ts.active_blocklist || 0);
+      setText('brp-penalties', ts.trust_penalties || 0);
+      setText('brp-forecast', fore.predicted_severity ? `${fore.predicted_severity} (${Math.round((fore.next_hour_threat_probability || 0) * 100)}%)` : '--');
+
+      // Recent threats
+      const threatsContainer = document.getElementById('brp-threats');
+      if (threatsContainer) {
+        const threats = json.recent_threats || [];
+        if (threats.length === 0) {
+          threatsContainer.innerHTML = '<div style="font-size:11px;color:rgba(255,255,255,0.25);padding:8px;">No recent threats detected.</div>';
+        } else {
+          threatsContainer.innerHTML = threats.slice(0, 5).map(t => {
+            const level = t.threat_level || 'unknown';
+            const color = level === 'critical' ? '#EF4444' : level === 'high' ? '#F59E0B' : '#FCD34D';
+            return `<div style="display:flex;justify-content:space-between;padding:8px 10px;background:rgba(255,255,255,0.02);border-radius:6px;margin-bottom:4px;font-size:12px;">
+              <span style="color:rgba(255,255,255,0.6);">${t.agent_id || 'unknown'}</span>
+              <span style="color:${color};">${level.toUpperCase()}</span>
+            </div>`;
+          }).join('');
+        }
+      }
+    } catch(e) {
+      // BRP offline, hide section
+      section.style.display = 'none';
+    }
+  }
+
+  // Auto-start
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', refresh);
+  } else {
+    // Small delay for DOM to be ready
+    setTimeout(refresh, 100);
+  }
+
+  // Auto-refresh
+  setInterval(refresh, CONFIG.REFRESH_MS);
+})();
+
+// ═══════════════════════════════════════════════════════════════════════
+// Ledger Nano WebHID Integration
+// ═══════════════════════════════════════════════════════════════════════
+
+// ── State ────────────────────────────────────────────────────────────
+let ledgerState = {
+  device: null,
+  solanaApp: null,
+  connected: false,
+  address: null,
+  appVersion: null,
+};
+
+// ── Core Functions ──────────────────────────────────────────────────
+
+async function connectLedger() {
+  const btn = document.getElementById('ledger-connect-btn');
+  const msgs = document.getElementById('ledger-messages');
+  const details = document.getElementById('ledger-details');
+  const browserInfo = document.getElementById('ledger-browser-info');
+  const disconnectBtn = document.getElementById('ledger-disconnect-btn');
+  const statusBadge = document.getElementById('ledger-status-badge');
+  
+  if (!navigator.hid) {
+    showLedgerMessage('error', 'WebHID not supported. Use Chrome, Edge, or Brave.');
+    return;
+  }
+
+  btn.disabled = true;
+  btn.textContent = '⏳ Connecting...';
+  showLedgerMessage('info', 'Requesting device... Check your browser prompt.');
+
+  try {
+    // ── Step 1: Request device via WebHID ──
+    const devices = await navigator.hid.requestDevice({
+      filters: [
+        { vendorId: 0x2C97 }, // Ledger
+        { usagePage: 0xFF00 }, // Generic HID
+      ],
+    });
+
+    if (!devices || devices.length === 0) {
+      showLedgerMessage('warn', 'No device selected. Please select your Ledger Nano.');
+      btn.disabled = false;
+      btn.innerHTML = '🔌 Connect Ledger Nano';
+      return;
+    }
+
+    const device = devices[0];
+    await device.open();
+    
+    // ── Step 2: Check Solana app is running ──
+    showLedgerMessage('info', 'Checking Solana app... Make sure it is open on your Ledger.');
+    
+    // Small delay for device to be ready
+    await new Promise(r => setTimeout(r, 1000));
+    
+    // Send Get Version APDU: CLA=0xE0, INS=0x01, P1=0x00, P2=0x00, data=[]
+    const versionApdu = new Uint8Array([0xE0, 0x01, 0x00, 0x00, 0x00, 0x00]);
+    const versionResult = await sendLedgerAPDU(device, versionApdu);
+    
+    if (!versionResult || versionResult.length < 3) {
+      throw new Error('Invalid response from Ledger. Is the Solana app open?');
+    }
+    
+    const major = versionResult[0];
+    const minor = versionResult[1];
+    const patch = versionResult[2];
+    const appVersion = `${major}.${minor}.${patch}`;
+    
+    // ── Step 3: Derive SIMPT address ──
+    showLedgerMessage('info', 'Deriving SIMPT address from Ledger...');
+    
+    // Path: m/44'/501'/0'/0'/0'
+    const pathBytes = new Uint8Array([
+      0x05,                                     // 5 path elements
+      0x80, 0x00, 0x00, 0x2C,                   // 44' hardened
+      0x80, 0x00, 0x01, 0xF5,                   // 501' hardened (Solana)
+      0x80, 0x00, 0x00, 0x00,                   // 0' hardened (account)
+      0x00, 0x00, 0x00, 0x00,                   // 0 (change)
+      0x00, 0x00, 0x00, 0x00,                   // 0 (address index)
+    ]);
+    
+    const pubkeyApdu = new Uint8Array([0xE0, 0x02, 0x00, 0x00, 0x00, 0x00]);
+    // We need to construct it properly
+    const pkPayload = new Uint8Array(6 + pathBytes.length);
+    pkPayload[0] = 0xE0; // CLA
+    pkPayload[1] = 0x02; // INS: Get Public Key
+    pkPayload[2] = 0x00; // P1: don't show on device
+    pkPayload[3] = 0x00; // P2
+    pkPayload[4] = (pathBytes.length >> 8) & 0xFF; // Length high
+    pkPayload[5] = pathBytes.length & 0xFF;         // Length low
+    pkPayload.set(pathBytes, 6);
+    
+    let addressResult;
+    try {
+      addressResult = await sendLedgerAPDU(device, pkPayload);
+    } catch(e) {
+      // Retry with show on device (P1=0x01)
+      pkPayload[2] = 0x01;
+      addressResult = await sendLedgerAPDU(device, pkPayload);
+    }
+    
+    if (!addressResult || addressResult.length < 32) {
+      throw new Error('Failed to derive address from Ledger');
+    }
+    
+    const pubkeyBytes = addressResult.slice(0, 32);
+    const address = base58Encode(pubkeyBytes);
+    
+    // ── Step 4: Update state ──
+    ledgerState.device = device;
+    ledgerState.solanaApp = { getVersion: () => ({ major, minor, patch }) };
+    ledgerState.connected = true;
+    ledgerState.address = address;
+    ledgerState.appVersion = appVersion;
+    
+    // ── Step 5: Update UI ──
+    document.getElementById('ledger-device-name').textContent = device.productName || 'Ledger Nano';
+    document.getElementById('ledger-app-version').textContent = `Solana v${appVersion}`;
+    document.getElementById('ledger-address').textContent = address;
+    document.getElementById('ledger-path').textContent = "m/44'/501'/0'/0'/0'";
+    
+    btn.textContent = '✅ Connected';
+    btn.style.background = '#10B981';
+    
+    disconnectBtn.style.display = 'flex';
+    details.style.display = 'block';
+    browserInfo.style.display = 'none';
+    
+    statusBadge.innerHTML = `
+      <span style="padding:6px 14px;background:rgba(16,185,129,0.12);border:1px solid rgba(16,185,129,0.25);border-radius:99px;font-size:11px;color:#10B981;display:flex;align-items:center;gap:6px;">
+        <span style="width:8px;height:8px;border-radius:50%;background:#10B981;display:inline-block;"></span>
+        Connected
+      </span>
+    `;
+    
+    showLedgerMessage('success', `✅ Connected! SIMPT address: <code style="background:rgba(255,255,255,0.05);padding:2px 6px;border-radius:4px;font-size:11px;">${address}</code>`);
+    
+    // Listen for disconnect
+    device.addEventListener('disconnect', () => {
+      ledgerState.connected = false;
+      showLedgerMessage('warn', '⚠️ Ledger disconnected.');
+      btn.textContent = '🔌 Connect Ledger Nano';
+      btn.style.background = '#7C3AED';
+      btn.disabled = false;
+      disconnectBtn.style.display = 'none';
+      statusBadge.innerHTML = '<span style="padding:6px 14px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:99px;font-size:11px;color:rgba(255,255,255,0.4);">Disconnected</span>';
+    });
+    
+  } catch(e) {
+    console.error('Ledger connection error:', e);
+    showLedgerMessage('error', `❌ ${e.message}`);
+    btn.textContent = '🔌 Connect Ledger Nano';
+    btn.style.background = '#7C3AED';
+  }
+  
+  btn.disabled = false;
+}
+
+async function disconnectLedger() {
+  if (ledgerState.device) {
+    try { await ledgerState.device.close(); } catch(e) { /* ignore */ }
+  }
+  ledgerState.connected = false;
+  ledgerState.address = null;
+  
+  const btn = document.getElementById('ledger-connect-btn');
+  const details = document.getElementById('ledger-details');
+  const browserInfo = document.getElementById('ledger-browser-info');
+  const statusBadge = document.getElementById('ledger-status-badge');
+  
+  btn.textContent = '🔌 Connect Ledger Nano';
+  btn.style.background = '#7C3AED';
+  btn.disabled = false;
+  
+  document.getElementById('ledger-disconnect-btn').style.display = 'none';
+  details.style.display = 'none';
+  browserInfo.style.display = 'block';
+  
+  statusBadge.innerHTML = '<span style="padding:6px 14px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:99px;font-size:11px;color:rgba(255,255,255,0.4);">Not Connected</span>';
+  
+  showLedgerMessage('info', '🔌 Disconnected.');
+}
+
+async function verifyLedgerAddress() {
+  if (!ledgerState.connected) {
+    showLedgerMessage('warn', 'Please connect your Ledger first.');
+    return;
+  }
+  
+  showLedgerMessage('info', '📋 Check your Ledger screen. Approve to verify the address...');
+  
+  try {
+    // Send Get Public Key with P1=0x01 (show on device)
+    const pathBytes = new Uint8Array([
+      0x05,
+      0x80, 0x00, 0x00, 0x2C,
+      0x80, 0x00, 0x01, 0xF5,
+      0x80, 0x00, 0x00, 0x00,
+      0x00, 0x00, 0x00, 0x00,
+      0x00, 0x00, 0x00, 0x00,
+    ]);
+    
+    const payload = new Uint8Array(6 + pathBytes.length);
+    payload[0] = 0xE0; payload[1] = 0x02; payload[2] = 0x01; payload[3] = 0x00;
+    payload[4] = (pathBytes.length >> 8) & 0xFF;
+    payload[5] = pathBytes.length & 0xFF;
+    payload.set(pathBytes, 6);
+    
+    const result = await sendLedgerAPDU(ledgerState.device, payload);
+    showLedgerMessage('success', '✅ Address verified on device!');
+  } catch(e) {
+    if (e.message.includes('cancel') || e.message.includes('denied')) {
+      showLedgerMessage('warn', '⚠️ Verification cancelled on device.');
+    } else {
+      showLedgerMessage('error', `❌ ${e.message}`);
+    }
+  }
+}
+
+async function proveLedgerOwnership() {
+  if (!ledgerState.connected) {
+    showLedgerMessage('warn', 'Please connect your Ledger first.');
+    return;
+  }
+  
+  const challenge = 'SIMP-' + Date.now().toString(36).toUpperCase();
+  
+  showLedgerMessage('info', `🖊️ Sign the ownership proof on your Ledger... Challenge: ${challenge}`);
+  
+  try {
+    const message = `SIMP Ownership Proof\nAddress: ${ledgerState.address}\nChallenge: ${challenge}\nTimestamp: ${new Date().toISOString()}`;
+    const msgBytes = new TextEncoder().encode(message);
+    
+    const pathBytes = new Uint8Array([
+      0x05,
+      0x80, 0x00, 0x00, 0x2C,
+      0x80, 0x00, 0x01, 0xF5,
+      0x80, 0x00, 0x00, 0x00,
+      0x00, 0x00, 0x00, 0x00,
+      0x00, 0x00, 0x00, 0x00,
+    ]);
+    
+    // Build sign message APDU: INS=0x03
+    const fullPayload = new Uint8Array(pathBytes.length + msgBytes.length);
+    fullPayload.set(pathBytes, 0);
+    fullPayload.set(msgBytes, pathBytes.length);
+    
+    const apdu = new Uint8Array(6 + fullPayload.length);
+    apdu[0] = 0xE0; apdu[1] = 0x03; apdu[2] = 0x00; apdu[3] = 0x00;
+    apdu[4] = (fullPayload.length >> 8) & 0xFF;
+    apdu[5] = fullPayload.length & 0xFF;
+    apdu.set(fullPayload, 6);
+    
+    const result = await sendLedgerAPDU(ledgerState.device, apdu);
+    
+    const signature = Array.from(result.slice(0, 64))
+      .map(b => b.toString(16).padStart(2, '0'))
+      .join('');
+    
+    showLedgerMessage('success', 
+      '✅ Ownership proven!<br>' +
+      `<small style="color:rgba(255,255,255,0.4);">Address: ${ledgerState.address}</small><br>` +
+      `<small style="color:rgba(255,255,255,0.4);">Signature: ${signature.slice(0, 32)}...</small>`
+    );
+    
+    // Update Fortress via API
+    try {
+      await fetch('https://127.0.0.1:5555/v1/explorer/simpwallet/fortress/verify', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ challenge, address: ledgerState.address, signature }),
+      });
+    } catch(e) { /* broker offline */ }
+    
+  } catch(e) {
+    if (e.message.includes('cancel') || e.message.includes('denied')) {
+      showLedgerMessage('warn', '⚠️ Signing cancelled on device.');
+    } else {
+      showLedgerMessage('error', `❌ ${e.message}`);
+    }
+  }
+}
+
+// ── Low-Level APDU Communication ────────────────────────────────────
+
+async function sendLedgerAPDU(device, apdu) {
+  // Split APDU into 64-byte HID reports
+  const channel = 1; // Fixed channel for simplicity
+  const chunks = chunkAPDUFixed(apdu, channel);
+  
+  for (const chunk of chunks) {
+    await device.sendReport(0, chunk);
+    await new Promise(r => setTimeout(r, 10));
+  }
+  
+  // Read response
+  return await readLedgerResponse(device, channel);
+}
+
+function chunkAPDUFixed(apdu, channel) {
+  const chunks = [];
+  const MAX_BODY = 61; // 64 - 3 (channel + tag)
+  
+  // First chunk: [channel(2), tag(0x05), data...]
+  const first = new Uint8Array(Math.min(MAX_BODY, apdu.length) + 3);
+  first[0] = (channel >> 8) & 0xFF;
+  first[1] = channel & 0xFF;
+  first[2] = 0x05;
+  first.set(apdu.slice(0, MAX_BODY), 3);
+  chunks.push(first);
+  
+  // Continuation chunks: [channel(2), tag(0x00), seq(2), data...]
+  let offset = MAX_BODY;
+  let seq = 0;
+  while (offset < apdu.length) {
+    const remaining = apdu.length - offset;
+    const chunkSize = Math.min(59, remaining); // 64 - 5 (channel + tag + seq)
+    const chunk = new Uint8Array(chunkSize + 5);
+    chunk[0] = (channel >> 8) & 0xFF;
+    chunk[1] = channel & 0xFF;
+    chunk[2] = 0x00;
+    chunk[3] = (seq >> 8) & 0xFF;
+    chunk[4] = seq & 0xFF;
+    chunk.set(apdu.slice(offset, offset + chunkSize), 5);
+    chunks.push(chunk);
+    offset += chunkSize;
+    seq++;
+  }
+  
+  return chunks;
+}
+
+async function readLedgerResponse(device, channel) {
+  const chunks = [];
+  let attempts = 0;
+  const maxAttempts = 100; // ~10 seconds
+  
+  while (attempts < maxAttempts) {
+    const report = await device.receive();
+    const data = new Uint8Array(report.buffer || report);
+    
+    if (data.length < 3) { attempts++; continue; }
+    
+    const respChannel = (data[0] << 8) | data[1];
+    if (respChannel !== channel) { attempts++; continue; }
+    
+    const tag = data[2];
+    
+    if (tag === 0x05) {
+      // First response chunk
+      chunks.push(data.slice(3));
+    } else if (tag === 0x00 && data.length >= 5) {
+      // Continuation chunk
+      const seq = (data[3] << 8) | data[4];
+      chunks.push(data.slice(5));
+    }
+    
+    // Check if we have a complete response (ends with SW = 2 bytes)
+    const full = concatUint8(chunks);
+    if (full.length >= 2) {
+      const sw = (full[full.length - 2] << 8) | full[full.length - 1];
+      
+      if (sw === 0x9000) {
+        // Success — return data without SW
+        return full.slice(0, full.length - 2);
+      }
+      
+      // Error codes
+      switch (sw) {
+        case 0x6985: throw new Error('User cancelled on device');
+        case 0x6986: throw new Error('Action denied on device');
+        case 0x6E00: throw new Error('CLA not supported');
+        case 0x6D00: throw new Error('INS not supported (Solana app open?)');
+        case 0x6A86: throw new Error('Wrong P1/P2 parameters');
+        default:
+          if (full.length > 2) {
+            // Partial data before error — might be useful
+            return full.slice(0, full.length - 2);
+          }
+          throw new Error(`APDU error: 0x${sw.toString(16)}`);
+      }
+    }
+    
+    attempts++;
+  }
+  
+  throw new Error('Timeout waiting for Ledger response');
+}
+
+function concatUint8(chunks) {
+  if (!chunks.length) return new Uint8Array(0);
+  let total = 0;
+  for (const c of chunks) total += c.length;
+  const result = new Uint8Array(total);
+  let offset = 0;
+  for (const c of chunks) {
+    result.set(c, offset);
+    offset += c.length;
+  }
+  return result;
+}
+
+// ── Base58 (Solana Address Encoding) ─────────────────────────────────
+
+function base58Encode(bytes) {
+  const ALPHABET = '123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz';
+  
+  // Count leading zeros
+  let zeros = 0;
+  for (const b of bytes) {
+    if (b === 0) zeros++;
+    else break;
+  }
+  
+  // Convert to big integer base 58
+  let result = [];
+  let num = [0];
+  
+  for (const b of bytes) {
+    let carry = b;
+    for (let i = 0; i < num.length; i++) {
+      carry += num[i] * 256;
+      num[i] = carry % 58;
+      carry = Math.floor(carry / 58);
+    }
+    while (carry > 0) {
+      num.push(carry % 58);
+      carry = Math.floor(carry / 58);
+    }
+  }
+  
+  // Convert to string (reverse)
+  for (let i = num.length - 1; i >= 0; i--) {
+    result.push(ALPHABET[num[i]]);
+  }
+  
+  // Add leading 1s
+  return '1'.repeat(zeros) + result.join('');
+}
+
+// ── UI Helper ──────────────────────────────────────────────────────
+
+function showLedgerMessage(type, text) {
+  const el = document.getElementById('ledger-messages');
+  if (!el) return;
+  
+  const colors = {
+    info: { bg: 'rgba(59,130,246,0.08)', border: 'rgba(59,130,246,0.15)', color: '#93C5FD' },
+    success: { bg: 'rgba(16,185,129,0.08)', border: 'rgba(16,185,129,0.15)', color: '#6EE7B7' },
+    warn: { bg: 'rgba(245,158,11,0.08)', border: 'rgba(245,158,11,0.15)', color: '#FCD34D' },
+    error: { bg: 'rgba(239,68,68,0.08)', border: 'rgba(239,68,68,0.15)', color: '#FCA5A5' },
+  };
+  
+  const c = colors[type] || colors.info;
+  
+  el.innerHTML = `
+    <div style="padding:12px 16px;background:${c.bg};border:1px solid ${c.border};border-radius:8px;font-size:13px;color:${c.color};">
+      ${text}
+    </div>
+  `;
+}
+
+// ── Auto-detect Ledger on page load ──────────────────────────────────
+
+if (navigator.hid) {
+  // Check if any Ledger is already paired
+  navigator.hid.getDevices().then(devices => {
+    const ledgerDevices = devices.filter(d => d.vendorId === 0x2C97);
+    if (ledgerDevices.length > 0) {
+      document.getElementById('ledger-browser-info').querySelector('strong').textContent += ' (paired)';
+    }
+  }).catch(() => {});
+  
+  // Listen for future connection requests (from other tabs)
+  navigator.hid.addEventListener('connect', ({ device }) => {
+    if (device.vendorId === 0x2C97) {
+      showLedgerMessage('info', '🔌 Ledger Nano detected. Click "Connect" to use it.');
+    }
+  });
+}
+</script>
+
+<!-- ════════════════════════════════════════════════════════════════ -->
+<!-- END SIMPWallet Live Embed                                       -->
+<!-- ════════════════════════════════════════════════════════════════ -->

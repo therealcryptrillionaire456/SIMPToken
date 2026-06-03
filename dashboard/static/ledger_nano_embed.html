@@ -1,0 +1,370 @@
+<!-- 
+ ════════════════════════════════════════════════════════════════
+ SIMPWallet Ledger Nano — Drop-in Hardware Wallet Integration
+ ════════════════════════════════════════════════════════════════
+ Place this code block ANYWHERE on www.simptoken.uk to add a
+ fully functional Ledger Nano hardware wallet interface.
+ 
+ No dependencies. No iframes. Just paste and go.
+ ════════════════════════════════════════════════════════════════
+-->
+
+<section id="ledger-nano-section" style="padding:80px 24px;background:#0A0A0A;">
+  <div style="max-width:900px;margin:0 auto;">
+    
+    <!-- Header -->
+    <div style="display:flex;align-items:center;gap:16px;margin-bottom:32px;">
+      <div style="width:56px;height:56px;background:linear-gradient(135deg,#7C3AED,#3B82F6);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:28px;">🔐</div>
+      <div>
+        <h2 style="color:#fff;font-size:28px;font-weight:700;margin:0;font-family:'JetBrains Mono',monospace;">SIMP × Ledger Nano</h2>
+        <p style="color:rgba(255,255,255,0.45);margin:6px 0 0 0;font-size:14px;">
+          Hardware security for agentic tokens · Key never leaves the device
+        </p>
+      </div>
+    </div>
+
+    <!-- Three-step setup guide -->
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:32px;">
+      <div style="background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-radius:12px;padding:20px;text-align:center;">
+        <div style="width:36px;height:36px;background:rgba(124,58,237,0.15);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;margin:0 auto 12px;">①</div>
+        <div style="color:#fff;font-size:14px;font-weight:600;margin-bottom:4px;">Install Solana App</div>
+        <div style="color:rgba(255,255,255,0.35);font-size:12px;">
+          Open Ledger Live → Manager → Search "Solana" → Install
+        </div>
+      </div>
+      <div style="background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-radius:12px;padding:20px;text-align:center;">
+        <div style="width:36px;height:36px;background:rgba(124,58,237,0.15);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;margin:0 auto 12px;">②</div>
+        <div style="color:#fff;font-size:14px;font-weight:600;margin-bottom:4px;">Connect & Verify</div>
+        <div style="color:rgba(255,255,255,0.35);font-size:12px;">
+          Plugin USB · Open Solana app · Click "Connect" below
+        </div>
+      </div>
+      <div style="background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-radius:12px;padding:20px;text-align:center;">
+        <div style="width:36px;height:36px;background:rgba(124,58,237,0.15);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;margin:0 auto 12px;">③</div>
+        <div style="color:#fff;font-size:14px;font-weight:600;margin-bottom:4px;">Store & Transact SIMPT</div>
+        <div style="color:rgba(255,255,255,0.35);font-size:12px;">
+          Your SIMPT lives on-chain · Ledger holds the keys
+        </div>
+      </div>
+    </div>
+
+    <!-- Connect Panel -->
+    <div style="background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-radius:16px;padding:32px;text-align:center;">
+      
+      <!-- Status indicator -->
+      <div id="ln-status" style="margin-bottom:20px;">
+        <span style="padding:8px 20px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:99px;font-size:13px;color:rgba(255,255,255,0.4);">
+          ⚡ Waiting for connection
+        </span>
+      </div>
+
+      <!-- Connect button -->
+      <button id="ln-connect-btn" onclick="connectLedgerNano()" style="padding:14px 32px;background:#7C3AED;border:none;border-radius:10px;color:#fff;font-size:16px;font-weight:600;cursor:pointer;transition:all 0.2s;display:inline-flex;align-items:center;gap:10px;">
+        🔌 Connect Ledger Nano
+      </button>
+
+      <!-- Wallet info (hidden until connected) -->
+      <div id="ln-wallet" style="display:none;margin-top:24px;">
+        <div style="background:rgba(255,255,255,0.03);border-radius:12px;padding:20px;text-align:left;">
+          
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+            <div>
+              <div style="font-size:11px;color:rgba(255,255,255,0.35);text-transform:uppercase;margin-bottom:6px;">Device</div>
+              <div id="ln-device" style="color:#fff;font-size:14px;">Ledger Nano</div>
+            </div>
+            <div>
+              <div style="font-size:11px;color:rgba(255,255,255,0.35);text-transform:uppercase;margin-bottom:6px;">Solana App</div>
+              <div id="ln-app" style="color:#fff;font-size:14px;">--</div>
+            </div>
+            <div style="grid-column:span 2;">
+              <div style="font-size:11px;color:rgba(255,255,255,0.35);text-transform:uppercase;margin-bottom:6px;">SIMPT Address</div>
+              <div id="ln-address" style="color:#10B981;font-size:14px;font-family:'JetBrains Mono',monospace;word-break:break-all;">--</div>
+            </div>
+            <div style="grid-column:span 2;">
+              <div style="font-size:11px;color:rgba(255,255,255,0.35);text-transform:uppercase;margin-bottom:6px;">Derivation Path</div>
+              <div style="color:rgba(255,255,255,0.4);font-size:12px;font-family:'JetBrains Mono',monospace;">m/44'/501'/0'/0'/0'</div>
+            </div>
+          </div>
+
+          <!-- Action buttons -->
+          <div style="display:flex;gap:8px;margin-top:16px;flex-wrap:wrap;">
+            <button onclick="verifyOnLedger()" style="padding:8px 20px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:6px;color:#fff;font-size:13px;cursor:pointer;">
+              ✅ Verify Address
+            </button>
+            <button onclick="proveWithLedger()" style="padding:8px 20px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:6px;color:#fff;font-size:13px;cursor:pointer;">
+              🖊️ Sign Proof
+            </button>
+            <button onclick="disconnectLedgerNano()" style="padding:8px 20px;background:rgba(239,68,68,0.08);border:1px solid rgba(239,68,68,0.12);border-radius:6px;color:#FCA5A5;font-size:13px;cursor:pointer;">
+              ⛓️ Disconnect
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Messages -->
+      <div id="ln-messages" style="margin-top:16px;"></div>
+    </div>
+
+    <!-- Browser notice -->
+    <div style="margin-top:24px;padding:16px;background:rgba(245,158,11,0.04);border:1px solid rgba(245,158,11,0.08);border-radius:10px;font-size:13px;color:rgba(255,255,255,0.4);">
+      <span style="color:#FCD34D;">💡</span> 
+      <strong style="color:rgba(255,255,255,0.6);">Browser required:</strong> 
+      Chrome 89+, Edge 89+, Brave, or Opera. 
+      Firefox & Safari <span style="color:#EF4444;">✗</span> (use Ledger Bridge)
+      &nbsp;·&nbsp; 
+      <strong style="color:rgba(255,255,255,0.6);">USB only:</strong> 
+      Connect via USB cable — Bluetooth not supported in-browser
+    </div>
+
+  </div>
+</section>
+
+<style>
+  #ledger-nano-section button:hover { opacity: 0.85; }
+  #ledger-nano-section button:active { transform: scale(0.97); }
+</style>
+
+<script>
+// ═══════════════════════════════════════════════════════════════════════
+// Ledger Nano WebHID — Standalone, Zero-Dependency
+// ═══════════════════════════════════════════════════════════════════════
+
+let lnState = { device: null, connected: false, address: null };
+
+// Connect
+async function connectLedgerNano() {
+  const btn = document.getElementById('ln-connect-btn');
+  const msgs = document.getElementById('ln-messages');
+
+  if (!navigator.hid) {
+    msgs.innerHTML = '<div style="padding:10px;background:rgba(239,68,68,0.1);border-radius:8px;color:#FCA5A5;font-size:13px;">❌ WebHID not supported. Use Chrome, Edge, or Brave.</div>';
+    return;
+  }
+
+  btn.disabled = true;
+  btn.innerHTML = '⏳ Connecting...';
+  msgs.innerHTML = '<div style="padding:10px;background:rgba(59,130,246,0.1);border-radius:8px;color:#93C5FD;font-size:13px;">Requesting Ledger device...</div>';
+
+  try {
+    const devices = await navigator.hid.requestDevice({
+      filters: [{ vendorId: 0x2C97 }],
+    });
+
+    if (!devices || !devices.length) {
+      throw new Error('No device selected');
+    }
+
+    const device = devices[0];
+    await device.open();
+
+    // Check Solana app via Get Version
+    const verPayload = new Uint8Array([0xE0, 0x01, 0x00, 0x00, 0x00, 0x00]);
+    const verResult = await sendAPDU(device, verPayload);
+    
+    const version = verResult.length >= 3 
+      ? `${verResult[0]}.${verResult[1]}.${verResult[2]}`
+      : '--';
+
+    // Derive address
+    const pathBytes = new Uint8Array([
+      0x05, 0x80, 0x00, 0x00, 0x2C, 0x80, 0x00, 0x01, 0xF5,
+      0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    ]);
+
+    const pkPayload = new Uint8Array(6 + pathBytes.length);
+    pkPayload.set([0xE0, 0x02, 0x00, 0x00, (pathBytes.length >> 8) & 0xFF, pathBytes.length & 0xFF], 0);
+    pkPayload.set(pathBytes, 6);
+
+    const pkResult = await sendAPDU(device, pkPayload);
+    const pubkey = pkResult.slice(0, 32);
+    const address = base58(pubkey);
+
+    // Update state
+    lnState.device = device;
+    lnState.connected = true;
+    lnState.address = address;
+
+    // Update UI
+    document.getElementById('ln-device').textContent = device.productName || 'Ledger Nano';
+    document.getElementById('ln-app').textContent = 'Solana v' + version;
+    document.getElementById('ln-address').textContent = address;
+    document.getElementById('ln-wallet').style.display = 'block';
+    
+    btn.textContent = '✅ Connected';
+    btn.style.background = '#10B981';
+    btn.disabled = false;
+
+    document.getElementById('ln-status').innerHTML = 
+      '<span style="padding:8px 20px;background:rgba(16,185,129,0.12);border:1px solid rgba(16,185,129,0.25);border-radius:99px;font-size:13px;color:#10B981;display:inline-flex;align-items:center;gap:6px;"><span style="width:8px;height:8px;border-radius:50%;background:#10B981;display:inline-block;"></span> Connected ✅</span>';
+
+    msgs.innerHTML = '<div style="padding:10px;background:rgba(16,185,129,0.1);border-radius:8px;color:#6EE7B7;font-size:13px;">✅ Success! Your SIMPT address is ready.</div>';
+
+    // Detect disconnect
+    device.addEventListener('disconnect', () => {
+      lnState.connected = false;
+      document.getElementById('ln-connect-btn').textContent = '🔌 Connect Ledger Nano';
+      document.getElementById('ln-connect-btn').style.background = '#7C3AED';
+      document.getElementById('ln-wallet').style.display = 'none';
+      document.getElementById('ln-status').innerHTML = '<span style="padding:8px 20px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:99px;font-size:13px;color:rgba(255,255,255,0.4);">⚠️ Disconnected</span>';
+      document.getElementById('ln-messages').innerHTML = '<div style="padding:10px;background:rgba(245,158,11,0.1);border-radius:8px;color:#FCD34D;font-size:13px;">⚠️ Ledger disconnected.</div>';
+    });
+
+  } catch(e) {
+    msgs.innerHTML = `<div style="padding:10px;background:rgba(239,68,68,0.1);border-radius:8px;color:#FCA5A5;font-size:13px;">❌ ${e.message}</div>`;
+    btn.textContent = '🔌 Connect Ledger Nano';
+    btn.style.background = '#7C3AED';
+    btn.disabled = false;
+  }
+}
+
+// Verify address on device
+async function verifyOnLedger() {
+  if (!lnState.connected) {
+    document.getElementById('ln-messages').innerHTML = '<div style="padding:10px;background:rgba(245,158,11,0.1);border-radius:8px;color:#FCD34D;font-size:13px;">Please connect first.</div>';
+    return;
+  }
+  
+  document.getElementById('ln-messages').innerHTML = '<div style="padding:10px;background:rgba(59,130,246,0.1);border-radius:8px;color:#93C5FD;font-size:13px;">Check your Ledger screen to verify address...</div>';
+  
+  try {
+    const pathBytes = new Uint8Array([
+      0x05, 0x80, 0x00, 0x00, 0x2C, 0x80, 0x00, 0x01, 0xF5,
+      0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    ]);
+    const payload = new Uint8Array(6 + pathBytes.length);
+    payload.set([0xE0, 0x02, 0x01, 0x00, (pathBytes.length >> 8) & 0xFF, pathBytes.length & 0xFF], 0);
+    payload.set(pathBytes, 6);
+    await sendAPDU(lnState.device, payload);
+    document.getElementById('ln-messages').innerHTML = '<div style="padding:10px;background:rgba(16,185,129,0.1);border-radius:8px;color:#6EE7B7;font-size:13px;">✅ Address verified on device!</div>';
+  } catch(e) {
+    if (e.message.includes('cancel')) {
+      document.getElementById('ln-messages').innerHTML = '<div style="padding:10px;background:rgba(245,158,11,0.1);border-radius:8px;color:#FCD34D;font-size:13px;">⚠️ Verification cancelled on device.</div>';
+    } else {
+      document.getElementById('ln-messages').innerHTML = `<div style="padding:10px;background:rgba(239,68,68,0.1);border-radius:8px;color:#FCA5A5;font-size:13px;">❌ ${e.message}</div>`;
+    }
+  }
+}
+
+// Sign ownership proof
+async function proveWithLedger() {
+  if (!lnState.connected) return;
+  
+  const challenge = 'SIMP-' + Date.now().toString(36).toUpperCase();
+  const message = `SIMP Ownership Proof\nAddress: ${lnState.address}\nChallenge: ${challenge}`;
+  const msgBytes = new TextEncoder().encode(message);
+  
+  const pathBytes = new Uint8Array([
+    0x05, 0x80, 0x00, 0x00, 0x2C, 0x80, 0x00, 0x01, 0xF5,
+    0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+  ]);
+  
+  const fullData = new Uint8Array(pathBytes.length + msgBytes.length);
+  fullData.set(pathBytes, 0);
+  fullData.set(msgBytes, pathBytes.length);
+  
+  const payload = new Uint8Array(6 + fullData.length);
+  payload.set([0xE0, 0x03, 0x00, 0x00, (fullData.length >> 8) & 0xFF, fullData.length & 0xFF], 0);
+  payload.set(fullData, 6);
+  
+  document.getElementById('ln-messages').innerHTML = '<div style="padding:10px;background:rgba(59,130,246,0.1);border-radius:8px;color:#93C5FD;font-size:13px;">🖊️ Sign on your Ledger...</div>';
+  
+  try {
+    const result = await sendAPDU(lnState.device, payload);
+    const sig = Array.from(result.slice(0, 64)).map(b => b.toString(16).padStart(2,'0')).join('');
+    document.getElementById('ln-messages').innerHTML = `<div style="padding:10px;background:rgba(16,185,129,0.1);border-radius:8px;color:#6EE7B7;font-size:13px;">✅ Ownership proven!<br><small style="color:rgba(255,255,255,0.3);font-size:11px;">${lnState.address}</small></div>`;
+  } catch(e) {
+    document.getElementById('ln-messages').innerHTML = `<div style="padding:10px;background:rgba(239,68,68,0.1);border-radius:8px;color:#FCA5A5;font-size:13px;">❌ ${e.message}</div>`;
+  }
+}
+
+// Disconnect
+async function disconnectLedgerNano() {
+  if (lnState.device) {
+    try { await lnState.device.close(); } catch(e) {}
+  }
+  lnState.connected = false;
+  document.getElementById('ln-connect-btn').textContent = '🔌 Connect Ledger Nano';
+  document.getElementById('ln-connect-btn').style.background = '#7C3AED';
+  document.getElementById('ln-wallet').style.display = 'none';
+  document.getElementById('ln-status').innerHTML = '<span style="padding:8px 20px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:99px;font-size:13px;color:rgba(255,255,255,0.4);">⏸️ Disconnected</span>';
+  document.getElementById('ln-messages').innerHTML = '<div style="padding:10px;background:rgba(245,158,11,0.1);border-radius:8px;color:#FCD34D;font-size:13px;">🔌 Disconnected.</div>';
+}
+
+// ── APDU Communication ──────────────────────────────────────────────
+
+async function sendAPDU(device, apdu) {
+  const channel = 1;
+  const chunks = [];
+  const MAX = 61;
+
+  // First chunk
+  const first = new Uint8Array(Math.min(MAX, apdu.length) + 3);
+  first[0] = 0; first[1] = 1; first[2] = 0x05;
+  first.set(apdu.slice(0, MAX), 3);
+  chunks.push(first);
+
+  // Continuation
+  let offset = MAX, seq = 0;
+  while (offset < apdu.length) {
+    const size = Math.min(59, apdu.length - offset);
+    const chunk = new Uint8Array(size + 5);
+    chunk[0] = 0; chunk[1] = 1; chunk[2] = 0x00;
+    chunk[3] = (seq >> 8) & 0xFF; chunk[4] = seq & 0xFF;
+    chunk.set(apdu.slice(offset, offset + size), 5);
+    chunks.push(chunk);
+    offset += size; seq++;
+  }
+
+  for (const chunk of chunks) {
+    const padded = new Uint8Array(64);
+    padded.set(chunk, 0);
+    await device.sendReport(0, padded);
+    await new Promise(r => setTimeout(r, 10));
+  }
+
+  // Read response
+  return await readResponse(device, channel);
+}
+
+async function readResponse(device, channel) {
+  const chunks = [];
+  for (let i = 0; i < 200; i++) {
+    const report = await device.receive();
+    const data = new Uint8Array(report.buffer || report);
+    if (data.length < 2) continue;
+    if (data[0] !== 0 || data[1] !== 1) continue;
+    if (data[2] === 0x05) chunks.push(data.slice(3));
+    else if (data[2] === 0x00 && data.length >= 5) chunks.push(data.slice(5));
+
+    const full = concat(chunks);
+    if (full.length >= 2) {
+      const sw = (full[full.length - 2] << 8) | full[full.length - 1];
+      if (sw === 0x9000) return full.slice(0, full.length - 2);
+      throw { 0x6985: 'User cancelled on device', 0x6986: 'Denied', 0x6E00: 'CLA error', 0x6D00: 'INS error (Solana app?)' }[sw] || `Error 0x${sw.toString(16)}`;
+    }
+  }
+  throw new Error('Timeout');
+}
+
+function concat(chunks) {
+  if (!chunks.length) return new Uint8Array(0);
+  let t = 0; for (const c of chunks) t += c.length;
+  const r = new Uint8Array(t); let o = 0;
+  for (const c of chunks) { r.set(c, o); o += c.length; }
+  return r;
+}
+
+// ── Base58 ──────────────────────────────────────────────────────────
+
+function base58(bytes) {
+  const a = '123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz';
+  let z = 0; for (const b of bytes) { if (b === 0) z++; else break; }
+  let n = [0];
+  for (const b of bytes) {
+    let c = b;
+    for (let i = 0; i < n.length; i++) { c += n[i] * 256; n[i] = c % 58; c = Math.floor(c / 58); }
+    while (c > 0) { n.push(c % 58); c = Math.floor(c / 58); }
+  }
+  return '1'.repeat(z) + n.reverse().map(i => a[i]).join('');
+}
+</script>

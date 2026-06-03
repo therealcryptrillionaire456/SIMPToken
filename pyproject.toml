@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=64.0"]
+build-backend = "setuptools.backends._legacy:_Backend"
+
+[project]
+name = "simptoken"
+version = "2.0.0"
+description = "SIMPToken — The agentic token on Solana"
+readme = "README.md"
+requires-python = ">=3.9"
+license = {text = "Proprietary"}
+keywords = ["solana", "spl-token-2022", "token", "blockchain"]
+dependencies = [
+    "requests>=2.31.0",
+    "pynacl>=1.5.0",
+    "base58>=2.1.1",
+]
+
+[project.urls]
+Website = "https://simptoken.uk"
+Source = "https://github.com/kashclaw/SIMPToken"
