@@ -1,0 +1,13 @@
+SIMP Foundation Model v4 — Build Success
+=========================================
+Timestamp: 2026-06-03T13:24:09Z
+Model: simp-foundation-v4
+Base: qwen2.5-coder:1.5b
+Modelfile: /Users/kaseymarcelle/Downloads/kashclaw (claude rebuild)/simp-token-standalone/data/simp_knowledge/Modelfile
+Modelfile size:    14018 bytes
+Modelfile lines:      240
+Knowledge injected: SPECIFIC function names, file paths, ports, addresses, class names
+Token supply: 1,000,000,000 SIMPT
+Mint address: 6QxRa9aeCidptKS8CS2uenbQiy5enHR7eMMY29mghZNW
+Broker port: 5555
+Circulation interval: 60s
